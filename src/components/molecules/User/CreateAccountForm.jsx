@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
 
 class CreateAccountForm extends React.Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class CreateAccountForm extends React.Component {
   render() {
     return (
       <div>
-        <span>{JSON.stringify(this.props.user)}</span>
-        <form onSubmit={this.handleFormSubmit}>
+        {/* <span>{JSON.stringify(this.props.user)}</span> */}
+        <StyledForm onSubmit={this.handleFormSubmit}>
           <input
             name="login"
             type="text"
@@ -37,7 +38,7 @@ class CreateAccountForm extends React.Component {
             onChange={this.handleInputChange}
           />
           <input type="submit" value="Submit" />
-        </form>
+        </StyledForm>
       </div>
     )
   }
@@ -47,5 +48,9 @@ CreateAccountForm.propTypes = {
   onCreateAccount: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired, // eslint-disable-line
 }
+
+const StyledForm = styled.form`
+  display: none;
+`
 
 export default CreateAccountForm
