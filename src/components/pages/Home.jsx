@@ -1,22 +1,17 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
-import { hot } from 'react-hot-loader'
-import { logOn } from '../../store/user'
+import { authenticate } from '../../store/user'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      login: '',
-      password: '',
-    }
+    this.state = { login: '', password: '' }
   }
 
   handleFormSubmit = e => {
     e.preventDefault()
-    this.props.logOn(this.state)
+    this.props.authenticate(this.state)
   }
 
   handleInputChange = e => {
@@ -55,14 +50,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  logOn: () => {
-    dispatch(logOn())
-  },
+  authenticate: data => dispatch(authenticate(data)),
 })
 
 Home.propTypes = {
-  logOn: PropTypes.func.isRequired,
+  authenticate: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired, // eslint-disable-line
 }
 
-export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

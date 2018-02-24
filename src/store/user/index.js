@@ -1,47 +1,42 @@
-// Dont to forget about reject function
-const makeLogOn = () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({ test: true })
-      reject(new Error('Silenced Exception!'))
-    }, 1000)
-  })
+import { getUser } from '../../helpers/indexedDB'
 
-const logOn = () => dispatch => {
-  dispatch({
-    type: 'USER_LOGON',
-    payload: {},
-  })
+const authenticating = () => ({
+  type: 'USER_AUTH',
+  payload: {},
+})
 
-  makeLogOn()
-    .then(data => {
-      dispatch({
-        type: 'USER_LOGON_SUCCESS',
-        payload: { data },
-      })
-    })
-    .catch(error => {
-      dispatch({
-        type: 'USER_LOGON_FAIL',
-        payload: { error },
-      })
-    })
+const authenticated = data => ({
+  type: 'USER_AUTH_SUCCESS',
+  payload: { data },
+})
+
+const authenticatedError = error => ({
+  type: 'USER_AUTH_FAIL',
+  payload: { error: error.message },
+})
+
+const authenticate = user => dispatch => {
+  dispatch(authenticating())
+
+  getUser(user)
+    .then(data => dispatch(authenticated(data)))
+    .catch(error => dispatch(authenticatedError(error)))
 }
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case 'USER_LOGON':
+    case 'USER_AUTH':
       return {
         ...state,
         isFetching: true,
       }
-    case 'USER_LOGON_SUCCESS':
+    case 'USER_AUTH_SUCCESS':
       return {
         ...state,
         isFetching: false,
         ...action.payload,
       }
-    case 'USER_LOGON_FAIL':
+    case 'USER_AUTH_FAIL':
       return {
         ...state,
         isFetching: false,
@@ -53,4 +48,4 @@ const reducer = (state = {}, action) => {
   }
 }
 
-export { reducer as default, logOn }
+export { reducer as default, authenticate }
