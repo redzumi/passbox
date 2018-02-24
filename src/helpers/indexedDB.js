@@ -1,7 +1,7 @@
 import Dexie from 'dexie'
 
 const db = new Dexie('PassboxDB')
-const tables = { users: '++id,&login,&password', passwords: '++id' }
+const tables = { users: '++id,&login,password', passwords: '++id' }
 
 db.version(1).stores(tables)
 

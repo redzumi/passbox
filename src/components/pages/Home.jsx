@@ -1,48 +1,21 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
-import { authenticate } from '../../store/user'
+import AuthenticateForm from '../molecules/User/AuthenticateForm'
+import CreateAccountForm from '../molecules/User/CreateAccountForm'
+import { authenticate, create } from '../../store/user'
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { login: '', password: '' }
-  }
+const Home = ({ onAuthenticate, onCreateAccount, user }) => (
+  <div>
+    <AuthenticateForm onAuthenticate={onAuthenticate} user={user} />
+    <CreateAccountForm onCreateAccount={onCreateAccount} user={user} />
+  </div>
+)
 
-  handleFormSubmit = e => {
-    e.preventDefault()
-    this.props.authenticate(this.state)
-  }
-
-  handleInputChange = e => {
-    this.setState({
-      ...this.state,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <span>{JSON.stringify(this.props.user)}</span>
-        <form onSubmit={this.handleFormSubmit}>
-          <input
-            name="login"
-            type="text"
-            value={this.state.login}
-            onChange={this.handleInputChange}
-          />
-          <input
-            name="password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    )
-  }
+Home.propTypes = {
+  onAuthenticate: PropTypes.func.isRequired,
+  onCreateAccount: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired, // eslint-disable-line
 }
 
 const mapStateToProps = state => ({
@@ -50,12 +23,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: data => dispatch(authenticate(data)),
+  onAuthenticate: data => dispatch(authenticate(data)),
+  onCreateAccount: data => dispatch(create(data)),
 })
-
-Home.propTypes = {
-  authenticate: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired, // eslint-disable-line
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
