@@ -1,8 +1,17 @@
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import { applyMiddleware, createStore } from 'redux'
-import rootReducer from './reducers'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { routerMiddleware, routerReducer } from 'react-router-redux'
 
-const configureStore = () => createStore(rootReducer, applyMiddleware(thunk, logger))
+import reducers from './reducers'
+
+const configureStore = history =>
+  createStore(
+    combineReducers({
+      ...reducers,
+      router: routerReducer,
+    }),
+    applyMiddleware(thunk, routerMiddleware(history), logger)
+  )
 
 export default configureStore

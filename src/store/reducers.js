@@ -1,11 +1,9 @@
-import { combineReducers } from 'redux'
-
 import passwords from './passwords'
 import user from './user'
 
-const reducers = combineReducers({
+const reducers = {
   user,
   passwords,
-})
+}
 
 export default reducers
