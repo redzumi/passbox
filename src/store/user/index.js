@@ -1,17 +1,17 @@
 import { addUser, getUser } from '../../helpers/indexedDB'
 
 const authenticating = () => ({
-  type: 'USER_AUTH',
+  type: 'USER_GET',
   payload: {},
 })
 
 const authenticated = data => ({
-  type: 'USER_AUTH_SUCCESS',
+  type: 'USER_GET_SUCCESS',
   payload: { data },
 })
 
 const authenticateError = error => ({
-  type: 'USER_AUTH_FAIL',
+  type: 'USER_GET_FAIL',
   payload: { error: error.message },
 })
 
