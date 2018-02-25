@@ -2,11 +2,12 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+  mode: 'development',
   entry: path.resolve(__dirname, '../../src/index.jsx'),
   output: {
     path: path.resolve(__dirname, '../../build'),
@@ -25,11 +26,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../../src/index.html'),
-    }),
     new WriteFilePlugin(),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
+    new CopyWebpackPlugin([{ from: 'src/index.html' }])
   ],
   devServer: {
     contentBase: path.resolve(__dirname, '../../build'),

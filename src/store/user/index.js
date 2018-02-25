@@ -51,6 +51,7 @@ const reducer = (state = {}, action) => {
     case 'USER_AUTH':
       return {
         ...state,
+        isFailed: false,
         isFetching: true,
       }
     case 'USER_AUTH_SUCCESS':

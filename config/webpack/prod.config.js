@@ -2,16 +2,17 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   entry: path.resolve(__dirname, '../../src/index.jsx'),
   output: {
     path: path.resolve(__dirname, '../../build/public'),
-    filename: 'bundle-[hash].js',
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx'],
@@ -26,9 +27,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../../src/index.html'),
-    }),
+    new CopyWebpackPlugin([{ from: 'src/index.html' }]),
     new ProgressBarPlugin(),
     new UglifyJsPlugin({
       sourceMap: true,
