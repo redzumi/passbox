@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import AuthenticateForm from '../molecules/User/AuthenticateForm'
 import CreateAccountForm from '../molecules/User/CreateAccountForm'
+import PageContainer from '../atoms/PageContainer'
+
 import { authenticate, create } from '../../store/user'
 
 const Home = ({ onAuthenticate, onCreateAccount, user }) => (
@@ -20,33 +22,6 @@ Home.propTypes = {
   onCreateAccount: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired, // eslint-disable-line
 }
-
-const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #fdfdfe;
-
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-
-  &:after {
-    content: '';
-    position: absolute;
-
-    top: 50%;
-    bottom: -40%;
-
-    left: -25%;
-    right: -25%;
-
-    transform: rotate(-20deg);
-    z-index: -1;
-    background: linear-gradient(45deg, #646beb 45%, #6bdaed 85%);
-  }
-`
 
 const ContentContainer = styled.div`
   padding: 100px;

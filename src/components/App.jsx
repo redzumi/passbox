@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 import configureStore from '../store/configureStore'
+
 import Home from '../components/pages/Home'
 
 const history = createHistory()

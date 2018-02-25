@@ -18,6 +18,7 @@ const getUser = async userData => {
 }
 
 const addUser = async userData => {
+  await sleep(1000)
   const user = await db.table('users').add(userData)
   return user
 }
