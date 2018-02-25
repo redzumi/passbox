@@ -5,6 +5,7 @@ import ErrorMessage from '../../atoms/ErrorMessage'
 import Form from '../../atoms/Form'
 import Input from '../../atoms/Form/Input'
 import Label from '../../atoms/Form/Label'
+import Link from '../../atoms/Link'
 import Preloader from '../../atoms/Preloader'
 
 import Submit from '../../atoms/Form/Submit'
@@ -18,7 +19,7 @@ class CreateAccountForm extends React.Component {
 
   handleFormSubmit = e => {
     e.preventDefault()
-    this.props.onCreateAccount(this.state)
+    this.props.onAccountCreate(this.state)
   }
 
   handleInputChange = e => {
@@ -49,17 +50,16 @@ class CreateAccountForm extends React.Component {
             onChange={this.handleInputChange}
           />
           <Submit type="submit" value="Create account" />
-          {this.props.user.isFailed && (
-            <ErrorMessage>Ooops, error. {this.props.user.error}</ErrorMessage>
-          )}
+          {this.props.user.isFailed && <ErrorMessage message={this.props.user.error} />}
         </Form>
+        <Link to="/login" text="Log on." beforeLink="Have an account?" />
       </div>
     )
   }
 }
 
 CreateAccountForm.propTypes = {
-  onCreateAccount: PropTypes.func.isRequired,
+  onAccountCreate: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired, // eslint-disable-line
 }
 

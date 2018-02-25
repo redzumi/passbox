@@ -6,8 +6,10 @@ import Form from '../../atoms/Form'
 import Input from '../../atoms/Form/Input'
 import Label from '../../atoms/Form/Label'
 
+import Link from '../../atoms/Link'
 import Preloader from '../../atoms/Preloader'
 import Submit from '../../atoms/Form/Submit'
+
 import Title from '../../atoms/Form/Title'
 
 class AuthenticateForm extends React.Component {
@@ -49,10 +51,9 @@ class AuthenticateForm extends React.Component {
             onChange={this.handleInputChange}
           />
           <Submit type="submit" value="Login" />
-          {this.props.user.isFailed && (
-            <ErrorMessage>Ooops, error. {this.props.user.error}</ErrorMessage>
-          )}
+          {this.props.user.isFailed && <ErrorMessage message={this.props.user.error} />}
         </Form>
+        <Link to="/create" text="Create account?" />
       </div>
     )
   }

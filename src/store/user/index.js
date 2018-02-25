@@ -1,32 +1,32 @@
 import { addUser, getUser } from '../../helpers/indexedDB'
 
 const authenticating = () => ({
-  type: 'USER_GET',
+  type: 'USER_ACTION',
   payload: {},
 })
 
 const authenticated = data => ({
-  type: 'USER_GET_SUCCESS',
+  type: 'USER_ACTION_SUCCESS',
   payload: { data },
 })
 
 const authenticateError = error => ({
-  type: 'USER_GET_FAIL',
+  type: 'USER_ACTION_FAIL',
   payload: { error: error.message },
 })
 
 const creating = () => ({
-  type: 'USER_ADD',
+  type: 'USER_ACTION',
   payload: {},
 })
 
 const created = data => ({
-  type: 'USER_ADD_SUCCESS',
+  type: 'USER_ACTION_SUCCESS',
   payload: { data },
 })
 
 const createError = error => ({
-  type: 'USER_ADD_FAIL',
+  type: 'USER_ACTION_FAIL',
   payload: { error: error.message },
 })
 
@@ -48,19 +48,20 @@ const create = user => dispatch => {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case 'USER_AUTH':
+    case 'USER_ACTION':
       return {
         ...state,
         isFailed: false,
+        error: '',
         isFetching: true,
       }
-    case 'USER_AUTH_SUCCESS':
+    case 'USER_ACTION_SUCCESS':
       return {
         ...state,
         isFetching: false,
         ...action.payload,
       }
-    case 'USER_AUTH_FAIL':
+    case 'USER_ACTION_FAIL':
       return {
         ...state,
         isFetching: false,
