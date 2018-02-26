@@ -1,9 +1,19 @@
-const getPasswords = () => ({
+const get = () => ({
   type: 'GET_PASSWORDS',
   payload: {},
 })
 
-const reducer = (state = {}, action) => {
+const add = () => ({
+  type: 'ADD_PASSWORD',
+  payload: {},
+})
+
+const set = () => ({
+  type: 'SET_PASSWORD',
+  payload: {},
+})
+
+const reducer = (state = [{ id: 1, name: 'test1' }, { id: 2, name: 'test2' }], action) => {
   switch (action.type) {
     case 'GET_PASSWORDS':
       return [
@@ -17,4 +27,4 @@ const reducer = (state = {}, action) => {
   }
 }
 
-export { reducer as default, getPasswords }
+export { reducer as default, add, get, set }
