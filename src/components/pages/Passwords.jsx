@@ -2,18 +2,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import PageContainer from '../atoms/PageContainer'
+import { Redirect } from 'react-router'
 
+import PageContainer from '../atoms/PageContainer'
 import { add, get, set } from '../../store/passwords'
 
 class Passwords extends React.Component {
   componentDidMount() {
-    this.props.getPasswords()
+    if (this.props.user.isAuthenticated) this.props.getPasswords()
   }
 
   render() {
     return (
       <PageContainer>
+        {!this.props.user.isAuthenticated && <Redirect to="/login" />}
         <ContentContainer>{JSON.stringify(this.props.passwords)}</ContentContainer>
       </PageContainer>
     )
@@ -22,6 +24,7 @@ class Passwords extends React.Component {
 
 Passwords.propTypes = {
   passwords: PropTypes.array.isRequired, // eslint-disable-line
+  user: PropTypes.object.isRequired, // eslint-disable-line
   getPasswords: PropTypes.func.isRequired,
 }
 
@@ -35,6 +38,7 @@ const ContentContainer = styled.div`
 
 const mapStateToProps = state => ({
   passwords: state.passwords,
+  user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
