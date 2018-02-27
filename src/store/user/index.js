@@ -2,16 +2,12 @@ import { addUser, getUser } from '../../helpers/indexedDB'
 
 const authenticating = () => ({
   type: 'USER_ACTION',
-  payload: {
-    isFetching: true,
-    isFailed: false,
-  },
+  payload: {},
 })
 
 const authenticated = data => ({
   type: 'USER_ACTION_SUCCESS',
   payload: {
-    isFetching: false,
     isAuthenticated: true,
     data,
   },
@@ -20,24 +16,18 @@ const authenticated = data => ({
 const authenticateError = error => ({
   type: 'USER_ACTION_FAIL',
   payload: {
-    isFetching: false,
-    isFailed: true,
     error: error.message,
   },
 })
 
 const creating = () => ({
   type: 'USER_ACTION',
-  payload: {
-    isFetching: true,
-    isFailed: false,
-  },
+  payload: {},
 })
 
 const created = data => ({
   type: 'USER_ACTION_SUCCESS',
   payload: {
-    isFetching: false,
     isCreated: true,
     data,
   },
@@ -46,8 +36,6 @@ const created = data => ({
 const createError = error => ({
   type: 'USER_ACTION_FAIL',
   payload: {
-    isFetching: false,
-    isFailed: true,
     error: error.message,
   },
 })
@@ -76,16 +64,21 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         ...action.payload,
+        isFetching: true,
+        isFailed: false,
       }
     case 'USER_ACTION_SUCCESS':
       return {
         ...state,
         ...action.payload,
+        isFetching: false,
       }
     case 'USER_ACTION_FAIL':
       return {
         ...state,
         ...action.payload,
+        isFetching: false,
+        isFailed: true,
       }
     default:
       return state

@@ -15,6 +15,7 @@ ErrorMessage.propTypes = {
 const Error = styled.span`
   color: #cd2901;
   width: 250px;
+  display: block;
 `
 
 export default ErrorMessage
