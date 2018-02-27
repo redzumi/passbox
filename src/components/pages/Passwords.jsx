@@ -21,7 +21,7 @@ class Passwords extends React.Component {
 }
 
 Passwords.propTypes = {
-  passwords: PropTypes.object.isRequired, // eslint-disable-line
+  passwords: PropTypes.array.isRequired, // eslint-disable-line
   getPasswords: PropTypes.func.isRequired,
 }
 

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { Redirect } from 'react-router'
 
 import ErrorMessage from '../../atoms/ErrorMessage'
 import Form from '../../atoms/Form'
@@ -33,6 +34,7 @@ class AuthenticateForm extends React.Component {
   render() {
     return (
       <div>
+        {this.props.user.isAuthenticated && <Redirect to="/passwords" />}
         <Form onSubmit={this.handleFormSubmit}>
           <Title>User authenticate</Title>
           {this.props.user.isFetching && <Preloader>Loading...</Preloader>}

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { Redirect } from 'react-router'
 
 import ErrorMessage from '../../atoms/ErrorMessage'
 import Form from '../../atoms/Form'
@@ -32,6 +33,7 @@ class CreateAccountForm extends React.Component {
   render() {
     return (
       <div>
+        {this.props.user.isCreated && <Redirect to="/login" />}
         <Form onSubmit={this.handleFormSubmit}>
           <Title>Create account</Title>
           {this.props.user.isFetching && <Preloader>Loading...</Preloader>}

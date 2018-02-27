@@ -2,39 +2,63 @@ import { addUser, getUser } from '../../helpers/indexedDB'
 
 const authenticating = () => ({
   type: 'USER_ACTION',
-  payload: {},
+  payload: {
+    isFetching: true,
+    isFailed: false,
+  },
 })
 
 const authenticated = data => ({
   type: 'USER_ACTION_SUCCESS',
-  payload: { data },
+  payload: {
+    isFetching: false,
+    isAuthenticated: true,
+    data,
+  },
 })
 
 const authenticateError = error => ({
   type: 'USER_ACTION_FAIL',
-  payload: { error: error.message },
+  payload: {
+    isFetching: false,
+    isFailed: true,
+    error: error.message,
+  },
 })
 
 const creating = () => ({
   type: 'USER_ACTION',
-  payload: {},
+  payload: {
+    isFetching: true,
+    isFailed: false,
+  },
 })
 
 const created = data => ({
   type: 'USER_ACTION_SUCCESS',
-  payload: { data },
+  payload: {
+    isFetching: false,
+    isCreated: true,
+    data,
+  },
 })
 
 const createError = error => ({
   type: 'USER_ACTION_FAIL',
-  payload: { error: error.message },
+  payload: {
+    isFetching: false,
+    isFailed: true,
+    error: error.message,
+  },
 })
 
 const authenticate = user => dispatch => {
   dispatch(authenticating())
 
   getUser(user)
-    .then(data => dispatch(authenticated(data)))
+    .then(data => {
+      dispatch(authenticated(data))
+    })
     .catch(error => dispatch(authenticateError(error)))
 }
 
@@ -51,21 +75,16 @@ const reducer = (state = {}, action) => {
     case 'USER_ACTION':
       return {
         ...state,
-        isFailed: false,
-        error: '',
-        isFetching: true,
+        ...action.payload,
       }
     case 'USER_ACTION_SUCCESS':
       return {
         ...state,
-        isFetching: false,
         ...action.payload,
       }
     case 'USER_ACTION_FAIL':
       return {
         ...state,
-        isFetching: false,
-        isFailed: true,
         ...action.payload,
       }
     default:
