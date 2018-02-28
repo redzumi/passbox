@@ -2,8 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
+/* import { Redirect } from 'react-router' */
 
+import DataBox from '../atoms/Passwords/DataBox'
+import DatasContainer from '../atoms/Passwords/DatasContainer'
 import PageContainer from '../atoms/PageContainer'
 import { add, get, set } from '../../store/passwords'
 
@@ -15,8 +17,14 @@ class Passwords extends React.Component {
   render() {
     return (
       <PageContainer>
-        {!this.props.user.isAuthenticated && <Redirect to="/login" />}
-        <ContentContainer>{JSON.stringify(this.props.passwords)}</ContentContainer>
+        {/* {!this.props.user.isAuthenticated && <Redirect to="/login" />} */}
+        <ContentContainer>
+          <div className="col-md-12">
+            <DatasContainer>
+              {this.props.passwords.map(data => <DataBox key={data.id} data={data} />)}
+            </DatasContainer>
+          </div>
+        </ContentContainer>
       </PageContainer>
     )
   }
