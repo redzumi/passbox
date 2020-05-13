@@ -7,7 +7,7 @@
     "start:dev": "cross-env NODE_ENV=development webpack-dev-server --history-api-fallback --hot --config config/webpack/dev.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack -p --config config/webpack/prod.config.js",
     "ci": "npm-run-all lint build:prod",
-    "lint": "eslint --ext .js --ext .jsx src",
+    "lint": "eslint --ext .js --ext .jsx src && prettier --write ./",
     "fix": "eslint --ext .js --ext .jsx --fix src"
   },
   "author": "Redzumi",
@@ -55,6 +55,7 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.20.0",
     "fast-async": "^6.3.8",
+    "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
