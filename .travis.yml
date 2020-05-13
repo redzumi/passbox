@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8"
+  - "14"
 
 script:
   - npm run ci
@@ -8,12 +8,7 @@ script:
 install:
   - npm install
 
-cache:
-  directories:
-    - "node_modules"
-
 deploy:
   provider: surge
   project: ./build/public
-  skip_cleanup: true
   domain: passbox.surge.sh
