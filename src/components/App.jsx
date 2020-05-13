@@ -1,15 +1,15 @@
-import React from 'react'
-import { hot } from 'react-hot-loader'
-import { Route, Switch } from 'react-router-dom'
+import React from 'react';
+import { hot } from 'react-hot-loader';
+import { Route, Switch } from 'react-router-dom';
 
-import 'flexboxgrid2/flexboxgrid2.css' //eslint-disable-line
+import 'flexboxgrid2/flexboxgrid2.css'; //eslint-disable-line
 
-import Authenticate from '../components/pages/User/Authenticate'
-import CreateAccount from '../components/pages/User/CreateAccount'
-import Home from '../components/pages/Home'
-import NotFound from '../components/pages/NotFound'
+import Authenticate from '../components/pages/User/Authenticate';
+import CreateAccount from '../components/pages/User/CreateAccount';
+import Home from '../components/pages/Home';
+import NotFound from '../components/pages/NotFound';
 
-import Passwords from '../components/pages/Passwords'
+import Passwords from '../components/pages/Passwords';
 
 const App = () => (
   <Switch>
@@ -19,6 +19,6 @@ const App = () => (
     <Route exact path="/passwords" component={Passwords} />
     <Route component={NotFound} />
   </Switch>
-)
+);
 
-export default hot(module)(App)
+export default hot(module)(App);

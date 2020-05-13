@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default styled.input`
   border: none;
@@ -22,4 +22,4 @@ export default styled.input`
     cursor: pointer;
     box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.16);
   }
-`
+`;

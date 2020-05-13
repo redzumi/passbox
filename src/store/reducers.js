@@ -1,9 +1,9 @@
-import passwords from './passwords'
-import user from './user'
+import passwords from './passwords';
+import user from './user';
 
 const reducers = {
   user,
-  passwords,
-}
+  passwords
+};
 
-export default reducers
+export default reducers;

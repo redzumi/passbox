@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default styled.input`
   border: none;
@@ -14,4 +14,4 @@ export default styled.input`
   &:focus {
     border-bottom: 1px solid #646beb;
   }
-`
+`;

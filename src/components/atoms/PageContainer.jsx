@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default styled.div`
   display: flex;
@@ -25,4 +25,4 @@ export default styled.div`
     z-index: -1;
     background: linear-gradient(45deg, #646beb 45%, #6bdaed 85%);
   }
-`
+`;

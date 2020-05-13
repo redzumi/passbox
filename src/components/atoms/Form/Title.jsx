@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default styled.h1`
   align-self: left;
@@ -6,4 +6,4 @@ export default styled.h1`
   font-size: 22px;
   font-weight: normal;
   padding-bottom: 10px;
-`
+`;

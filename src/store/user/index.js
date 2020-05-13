@@ -1,62 +1,62 @@
-import { addUser, getUser } from '../../helpers/indexedDB'
+import { addUser, getUser } from '../../helpers/indexedDB';
 
 const authenticating = () => ({
   type: 'USER_ACTION',
-  payload: {},
-})
+  payload: {}
+});
 
-const authenticated = data => ({
+const authenticated = (data) => ({
   type: 'USER_ACTION_SUCCESS',
   payload: {
     isAuthenticated: true,
-    data,
-  },
-})
+    data
+  }
+});
 
-const authenticateError = error => ({
+const authenticateError = (error) => ({
   type: 'USER_ACTION_FAIL',
   payload: {
-    error: error.message,
-  },
-})
+    error: error.message
+  }
+});
 
 const creating = () => ({
   type: 'USER_ACTION',
-  payload: {},
-})
+  payload: {}
+});
 
-const created = data => ({
+const created = (data) => ({
   type: 'USER_ACTION_SUCCESS',
   payload: {
     isCreated: true,
-    data,
-  },
-})
+    data
+  }
+});
 
-const createError = error => ({
+const createError = (error) => ({
   type: 'USER_ACTION_FAIL',
   payload: {
-    error: error.message,
-  },
-})
+    error: error.message
+  }
+});
 
-const authenticate = user => dispatch => {
-  dispatch(authenticating())
+const authenticate = (user) => (dispatch) => {
+  dispatch(authenticating());
 
   getUser(user)
-    .then(data => {
-      dispatch(authenticated(data))
+    .then((data) => {
+      dispatch(authenticated(data));
     })
-    .catch(error => dispatch(authenticateError(error)))
-}
+    .catch((error) => dispatch(authenticateError(error)));
+};
 
-const create = user => dispatch => {
-  dispatch(creating())
+const create = (user) => (dispatch) => {
+  dispatch(creating());
 
   addUser(user)
-    .then(data => dispatch(created(data)))
-    .catch(error => dispatch(createError(error)))
-}
+    .then((data) => dispatch(created(data)))
+    .catch((error) => dispatch(createError(error)));
+};
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -65,24 +65,24 @@ const reducer = (state = {}, action) => {
         ...state,
         ...action.payload,
         isFetching: true,
-        isFailed: false,
-      }
+        isFailed: false
+      };
     case 'USER_ACTION_SUCCESS':
       return {
         ...state,
         ...action.payload,
-        isFetching: false,
-      }
+        isFetching: false
+      };
     case 'USER_ACTION_FAIL':
       return {
         ...state,
         ...action.payload,
         isFetching: false,
-        isFailed: true,
-      }
+        isFailed: true
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export { reducer as default, authenticate, create }
+export { reducer as default, authenticate, create };

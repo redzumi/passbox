@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Link = ({ to, text, beforeLink }) => (
   <NavContainer>
@@ -10,17 +10,17 @@ const Link = ({ to, text, beforeLink }) => (
       {text}
     </StyledLink>
   </NavContainer>
-)
+);
 
 Link.defaultProps = {
-  beforeLink: '',
-}
+  beforeLink: ''
+};
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  beforeLink: PropTypes.string,
-}
+  beforeLink: PropTypes.string
+};
 
 const NavContainer = styled.div`
   display: flex;
@@ -28,11 +28,11 @@ const NavContainer = styled.div`
   padding: 5px;
   font-family: 'Montserrat', sans-serif;
   justify-content: center;
-`
+`;
 
 const StyledSpan = styled.span`
   color: #5b5a5c;
-`
+`;
 
 const StyledLink = styled(NavLink)`
   color: #646beb;
@@ -46,6 +46,6 @@ const StyledLink = styled(NavLink)`
   &.active {
     color: #5b5a5c;
   }
-`
+`;
 
-export default Link
+export default Link;

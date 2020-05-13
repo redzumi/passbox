@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export default styled.form`
   font-family: 'Montserrat', sans-serif;
@@ -6,4 +6,4 @@ export default styled.form`
   flex-direction: column;
   align-items: center;
   position: relative;
-`
+`;
