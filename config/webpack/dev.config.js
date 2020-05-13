@@ -35,6 +35,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: 'src/index.html' }])
   ],
   devServer: {
+    port: 3000,
     contentBase: path.resolve(__dirname, '../../build'),
     compress: true,
     disableHostCheck: true,
