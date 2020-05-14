@@ -6,9 +6,11 @@ script:
   - npm run ci
 
 install:
+  - npm cache clean --force
   - npm install
 
 deploy:
   provider: surge
+  skip_cleanup: true
   project: ./build/public
   domain: passbox.surge.sh
